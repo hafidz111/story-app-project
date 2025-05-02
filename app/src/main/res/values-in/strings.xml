@@ -19,7 +19,7 @@
     <string name="image_story">Gambar Cerita</string>
     <string name="choose_gallery">Pilih dari Galeri</string>
     <string name="choose_camera">Ambil dari Kamera</string>
-    <string name="upload">Unggah</string>
+    <string name="upload">Unggah Story</string>
     <string name="fill_description">Isi deskripsi terlebih dahulu</string>
     <string name="new_story">Cerita Baru</string>
     <string name="story_date">Tanggal Cerita</string>
@@ -33,7 +33,6 @@
     <string name="next">Lanjut</string>
     <string name="yeah">Yeah!</string>
     <string name="success_registration">%1$s. Yuk, masuk dan mulai belajar coding!</string>
-    <string name="upload_fail">Gagal mengunggah: %1$s</string>
     <string name="fill_description_and_picture">Isi deskripsi dan pilih gambar terlebih dahulu</string>
     <string name="title_activity_maps">Peta Cerita</string>
     <string name="retry">Coba lagi</string>
@@ -46,4 +45,10 @@
     <string name="add_a_comment">Tambah komentar…</string>
     <string name="post">Post</string>
     <string name="delete">Hapus</string>
+    <string name="choose_image_first">Pilih gambar terlebih dahulu</string>
+    <string name="back">Kembali</string>
+    <string name="selected_image">Gambar yang Dipilih</string>
+    <string name="preview_image">Pratinjau Gambar</string>
+    <string name="upload_failed">Gagal mengunggah: %1$s</string>
+    <string name="fill_description_first">Isi deskripsi terlebih dahulu</string>
 </resources>

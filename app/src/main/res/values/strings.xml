@@ -17,9 +17,9 @@
     <string name="user_name">Name</string>
     <string name="story_description">Description</string>
     <string name="image_story">Story Image</string>
-    <string name="choose_gallery">Choose from Gallery</string>
-    <string name="choose_camera">Take from Camera</string>
-    <string name="upload">Upload</string>
+    <string name="choose_gallery">Gallery</string>
+    <string name="choose_camera">Camera</string>
+    <string name="upload">Upload Story</string>
     <string name="fill_description">Fill in the description</string>
     <string name="new_story">New Story</string>
     <string name="story_date">Story Date</string>
@@ -33,7 +33,6 @@
     <string name="next">Next</string>
     <string name="yeah">Yeah!</string>
     <string name="success_registration" tools:ignore="StringFormatInvalid">%1$s. Let’s log in and start learning to code.</string>
-    <string name="upload_fail" tools:ignore="StringFormatInvalid">Upload failed: %1$s</string>
     <string name="fill_description_and_picture">Please fill in the description and select a picture first</string>
     <string name="title_activity_maps">Maps Story</string>
     <string name="retry">Try again</string>
@@ -46,4 +45,10 @@
     <string name="add_a_comment">Add a comment…</string>
     <string name="post">Post</string>
     <string name="delete">Delete</string>
+    <string name="choose_image_first">Please choose an image first</string>
+    <string name="back">Back</string>
+    <string name="selected_image">Selected Image</string>
+    <string name="preview_image">Preview Image</string>
+    <string name="upload_failed">Upload failed: %1$s</string>
+    <string name="fill_description_first">Please fill in the description first</string>
 </resources>
