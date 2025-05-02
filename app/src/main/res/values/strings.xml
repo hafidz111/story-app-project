@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Story App</string>
+    <string name="signup">Sign Up</string>
+    <string name="login">Log In</string>
+    <string name="message_welcome_page">Want to learn Android, iOS, Machine Learning, Cloud, Front-End, Back-End, and other IT fields? Join Dicoding!</string>
+    <string name="title_welcome_page">Welcome to Dicoding!</string>
+    <string name="title_signup_page">Complete your data below</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Please enter your data first</string>
+    <string name="title_login_page">Ready to upgrade your skills?</string>
+    <string name="name">Name</string>
+    <string name="logout">Logout</string>
+    <string name="image_login">Login Image</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="user_name">Name</string>
+    <string name="story_description">Description</string>
+    <string name="image_story">Story Image</string>
+    <string name="choose_gallery">Choose from Gallery</string>
+    <string name="choose_camera">Take from Camera</string>
+    <string name="upload">Upload</string>
+    <string name="fill_description">Fill in the description</string>
+    <string name="new_story">New Story</string>
+    <string name="story_date">Story Date</string>
+    <string name="close">Close</string>
+    <string name="error_invalid_email">Invalid email format</string>
+    <string name="error_invalid_password">Password must be at least 8 characters</string>
+    <string name="error_empty_name">Name must not be empty</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="succes_login_as" tools:ignore="StringFormatInvalid">Successfully logged in as %1$s</string>
+    <string name="next">Next</string>
+    <string name="yeah">Yeah!</string>
+    <string name="success_registration" tools:ignore="StringFormatInvalid">%1$s. Let’s log in and start learning to code.</string>
+    <string name="upload_fail" tools:ignore="StringFormatInvalid">Upload failed: %1$s</string>
+    <string name="fill_description_and_picture">Please fill in the description and select a picture first</string>
+    <string name="title_activity_maps">Maps Story</string>
+    <string name="retry">Try again</string>
+    <string name="photo_user">User Photo</string>
+    <string name="comment">Comment</string>
+    <string name="timesstamp">Date</string>
+    <string name="comment_count">2</string>
+    <string name="comments_count">Comments (%1$s)</string>
+    <string name="there_is_an_error">An error occurred: %1$s</string>
+    <string name="add_a_comment">Add a comment…</string>
+    <string name="post">Post</string>
+    <string name="delete">Delete</string>
+</resources>
