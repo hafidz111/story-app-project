@@ -1,7 +1,10 @@
 package com.example.storyapp.utils
 
+import android.Manifest
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -9,6 +12,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.provider.Settings
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
 import java.io.ByteArrayOutputStream
@@ -20,6 +27,13 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import androidx.core.net.toUri
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.CameraPositionState
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
@@ -133,6 +147,64 @@ fun formatTimestamp(timestamp: Long): String {
         else -> {
             val days = hours / 24
             "${days}d ago"
+        }
+    }
+}
+
+suspend fun showLocationPermissionSnackbar(
+    snackbarHostState: SnackbarHostState,
+    context: Context
+): Boolean {
+    val result = snackbarHostState.showSnackbar(
+        message = "Izin lokasi dibutuhkan. Aktifkan di pengaturan.",
+        actionLabel = "Pengaturan"
+    )
+    if (result == SnackbarResult.ActionPerformed) {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = "package:${context.packageName}".toUri()
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        context.startActivity(intent)
+    }
+    return result == SnackbarResult.ActionPerformed
+}
+
+suspend fun moveToUserLocation(
+    context: Context,
+    fusedLocationClient: FusedLocationProviderClient,
+    cameraPositionState: CameraPositionState
+): Boolean {
+    val fineLocationGranted = ContextCompat.checkSelfPermission(
+        context,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+
+    val coarseLocationGranted = ContextCompat.checkSelfPermission(
+        context,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+
+    if (!fineLocationGranted && !coarseLocationGranted) {
+        return false
+    }
+
+    return suspendCoroutine { continuation ->
+        try {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
+                    if (location != null) {
+                        val latLng = LatLng(location.latitude, location.longitude)
+                        cameraPositionState.move(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+                        continuation.resume(true)
+                    } else {
+                        continuation.resume(false)
+                    }
+                }
+                .addOnFailureListener {
+                    continuation.resume(false)
+                }
+        } catch (e: SecurityException) {
+            continuation.resume(false)
         }
     }
 }
