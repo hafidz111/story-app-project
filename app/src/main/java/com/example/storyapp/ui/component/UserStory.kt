@@ -1,4 +1,4 @@
-package com.example.storyapp.component
+package com.example.storyapp.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

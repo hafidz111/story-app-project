@@ -1,4 +1,4 @@
-package com.example.storyapp.view.main
+package com.example.storyapp.ui.screen.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -9,11 +9,16 @@ import androidx.paging.cachedIn
 import com.example.storyapp.data.UserRepository
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.data.remote.response.ListStoryItem
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 
-class MainViewModel(private val repository: UserRepository) : ViewModel() {
-    fun getStories(token: String): LiveData<PagingData<ListStoryItem>> {
-        return repository.getStories(token).cachedIn(viewModelScope)
+class HomeViewModel(private val repository: UserRepository) : ViewModel() {
+    private var currentStories: Flow<PagingData<ListStoryItem>>? = null
+
+    fun getStories(token: String): Flow<PagingData<ListStoryItem>> {
+        if (currentStories == null) {
+            currentStories = repository.getStories(token).cachedIn(viewModelScope)
+        }
+        return currentStories!!
     }
 
     fun getSession(): LiveData<UserModel> {
@@ -22,11 +27,5 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getCommentCount(storyId: String): LiveData<Int> {
         return repository.getCommentCount(storyId)
-    }
-
-    fun logout() {
-        viewModelScope.launch {
-            repository.logout()
-        }
     }
 }

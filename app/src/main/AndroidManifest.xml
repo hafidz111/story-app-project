@@ -29,26 +29,28 @@
             android:value="AIzaSyAlbaqvF_WxhpUjZpkGIVL61rs7l_2NEdI" />
 
         <activity
-            android:name=".view.maps.MapsActivity"
+            android:name=".ui.screen.maps.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".view.story.StoryActivity"
+            android:name=".ui.screen.story.StoryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.detail.DetailActivity"
+            android:name=".ui.screen.detail.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".ui.screen.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.signup.SignupActivity"
+            android:name=".ui.screen.signup.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".view.welcome.WelcomeActivity"
-            android:exported="false" />
+            android:name=".ui.screen.welcome.WelcomeActivity"
+            android:exported="false" /><activity
+        android:name=".ui.screen.home.HomeActivity"
+        android:exported="false" />
         <activity
-            android:name=".view.main.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

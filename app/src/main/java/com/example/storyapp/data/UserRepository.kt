@@ -6,7 +6,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.liveData
+import com.example.storyapp.common.Result
 import com.example.storyapp.data.database.StoryDatabase
 import com.example.storyapp.data.model.Comment
 import com.example.storyapp.data.pref.UserModel
@@ -93,7 +93,7 @@ class UserRepository private constructor(
         userPreference.logout()
     }
 
-    fun getStories(token: String): LiveData<PagingData<ListStoryItem>> {
+    fun getStories(token: String): Flow<PagingData<ListStoryItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
@@ -101,7 +101,7 @@ class UserRepository private constructor(
             ),
             remoteMediator = StoryRemoteMediator(storyDatabase, apiService, token),
             pagingSourceFactory = { storyDatabase.storyDao().getAllStory() }
-        ).liveData
+        ).flow
     }
 
     suspend fun getDetailStory(token: String, id: String): Result<Story> {
