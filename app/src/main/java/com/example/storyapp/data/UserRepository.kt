@@ -6,7 +6,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.storyapp.common.Result
+import com.example.storyapp.common.UiState
 import com.example.storyapp.data.database.StoryDatabase
 import com.example.storyapp.data.model.Comment
 import com.example.storyapp.data.pref.UserModel
@@ -38,13 +38,14 @@ class UserRepository private constructor(
     private val apiService: ApiService,
     private val storyDatabase: StoryDatabase
 ) {
-    suspend fun login(email: String, password: String): Result<UserModel> {
+    suspend fun login(email: String, password: String): UiState<UserModel> {
         return try {
             val response = apiService.login(email, password)
             if (response.error == false) {
                 val loginResult = response.loginResult
                 val user = UserModel(
                     name = loginResult?.name ?: "",
+                    imageUrl = "",
                     email = email,
                     token = loginResult?.token ?: "",
                     isLogin = true,
@@ -52,33 +53,33 @@ class UserRepository private constructor(
                 )
                 Log.d("UserRepository", "Login berhasil, user: $user")
                 saveSession(user)
-                Result.Success(user)
+                UiState.Success(user)
             } else {
-                Result.Error(response.message ?: "Login gagal")
+                UiState.Error(response.message ?: "Login gagal")
             }
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorMessage = Gson().fromJson(errorBody, LoginResponse::class.java).message
-            Result.Error(errorMessage.toString())
+            UiState.Error(errorMessage.toString())
         } catch (e: Exception) {
-            Result.Error(e.message ?: "Terjadi kesalahan")
+            UiState.Error(e.message ?: "Terjadi kesalahan")
         }
     }
 
-    suspend fun register(name: String, email: String, password: String): Result<String> {
+    suspend fun register(name: String, email: String, password: String): UiState<String> {
         return try {
             val response = apiService.register(name, email, password)
             if (response.error == false) {
-                Result.Success(response.message ?: "Berhasil daftar")
+                UiState.Success(response.message ?: "Berhasil daftar")
             } else {
-                Result.Error(response.message ?: "Gagal daftar")
+                UiState.Error(response.message ?: "Gagal daftar")
             }
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorMessage = Gson().fromJson(errorBody, RegisterResponse::class.java).message
-            Result.Error(errorMessage.toString())
+            UiState.Error(errorMessage.toString())
         } catch (e: Exception) {
-            Result.Error(e.message ?: "Terjadi kesalahan")
+            UiState.Error(e.message ?: "Terjadi kesalahan")
         }
     }
 
@@ -104,25 +105,25 @@ class UserRepository private constructor(
         ).flow
     }
 
-    suspend fun getDetailStory(token: String, id: String): Result<Story> {
+    suspend fun getDetailStory(token: String, id: String): UiState<Story> {
         return try {
             val response = apiService.getDetailStory("Bearer $token", id)
             if (response.error == false) {
-                val story = response.story ?: return Result.Error("Cerita tidak ditemukan")
-                Result.Success(story)
+                val story = response.story ?: return UiState.Error("Cerita tidak ditemukan")
+                UiState.Success(story)
             } else {
-                Result.Error(response.message ?: "Gagal mengambil detail cerita")
+                UiState.Error(response.message ?: "Gagal mengambil detail cerita")
             }
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorMessage = Gson().fromJson(errorBody, DetailStoryResponse::class.java).message
-            Result.Error(errorMessage.toString())
+            UiState.Error(errorMessage.toString())
         } catch (e: Exception) {
-            Result.Error(e.message ?: "Gagal mengambil detail cerita")
+            UiState.Error(e.message ?: "Gagal mengambil detail cerita")
         }
     }
 
-    suspend fun uploadStory(token: String, file: File, description: String): Result<String> {
+    suspend fun uploadStory(token: String, file: File, description: String): UiState<String> {
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
             "photo", file.name, requestImageFile
@@ -134,39 +135,41 @@ class UserRepository private constructor(
                 apiService.uploadStories("Bearer $token", imageMultipart, descriptionBody)
 
             if (response.error == false) {
-                Result.Success(response.message ?: "Upload berhasil")
+                UiState.Success(response.message ?: "Upload berhasil")
             } else {
-                Result.Error(response.message ?: "Upload gagal")
+                UiState.Error(response.message ?: "Upload gagal")
             }
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorMessage = Gson().fromJson(errorBody, RegisterResponse::class.java).message
-            Result.Error(errorMessage.toString())
+            UiState.Error(errorMessage.toString())
         }
     }
 
-    suspend fun getStoriesWithLocation(token: String): Result<List<ListStoryItem>> =
+    suspend fun getStoriesWithLocation(token: String): UiState<List<ListStoryItem>> =
         withContext(Dispatchers.IO) {
             try {
                 val response = apiService.getStoriesWithLocation("Bearer $token")
 
                 if (response.error == false) {
-                    Result.Success(response.listStory)
+                    UiState.Success(response.listStory)
                 } else {
-                    Result.Error(response.message ?: "Gagal memuat cerita dengan lokasi")
+                    UiState.Error(response.message ?: "Gagal memuat cerita dengan lokasi")
                 }
             } catch (e: Exception) {
                 Log.e("Repository", "Error: ${e.message}")
-                Result.Error(e.message ?: "Gagal memuat cerita dengan lokasi")
+                UiState.Error(e.message ?: "Gagal memuat cerita dengan lokasi")
             }
         }
 
-    fun saveUserProfile(userId: String, name: String) {
+    fun saveUserProfile(userId: String, name: String, email: String, imageUrl: String) {
         val databaseRef = FirebaseDatabase.getInstance()
             .getReference("users")
             .child(userId)
         val userMap = mapOf(
-            "name" to name
+            "name" to name,
+            "email" to email,
+            "imageUrl" to imageUrl
         )
         databaseRef.setValue(userMap)
             .addOnSuccessListener {
@@ -177,18 +180,20 @@ class UserRepository private constructor(
             }
     }
 
-    fun getUserProfile(userId: String, callback: (String?) -> Unit) {
+    fun getUserProfile(userId: String, callback: (String?, String?, String?) -> Unit) {
         val databaseRef = FirebaseDatabase.getInstance()
             .getReference("users").child(userId)
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d("getUserProfile", "Snapshot: ${snapshot.value}")
                 val name = snapshot.child("name").getValue(String::class.java)
-                callback(name)
+                val email = snapshot.child("email").getValue(String::class.java)
+                val imageUrl = snapshot.child("imageUrl").getValue(String::class.java)
+                callback(name, email, imageUrl)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                callback(null)
+                callback(null, null, null)
             }
         })
     }

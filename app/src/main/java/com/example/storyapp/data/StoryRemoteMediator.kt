@@ -1,5 +1,6 @@
 package com.example.storyapp.data
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -44,6 +45,7 @@ class StoryRemoteMediator(
         try {
             val responseData =
                 apiService.getStories("Bearer $token", page, state.config.pageSize).listStory
+            Log.d("RemoteMediator", "Fetched ${responseData.size} items")
             val endOfPaginationReached = responseData.isEmpty()
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {

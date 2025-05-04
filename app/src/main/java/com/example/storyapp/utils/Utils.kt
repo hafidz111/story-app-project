@@ -124,9 +124,25 @@ fun String.withDateFormat(): String {
     return try {
         val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
         isoFormat.timeZone = TimeZone.getTimeZone("UTC")
-        val date = isoFormat.parse(this)
-        val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale("id", "ID"))
-        outputFormat.format(date!!)
+        val date = isoFormat.parse(this) ?: return this
+        val now = Date()
+        val diffMillis = now.time - date.time
+
+        val seconds = diffMillis / 1000
+        val minutes = seconds / 60
+        val hours = minutes / 60
+        val days = hours / 24
+
+        when {
+            seconds < 60 -> "Just now"
+            minutes < 60 -> "$minutes menit lalu"
+            hours < 24 -> "$hours jam lalu"
+            days < 7 -> "$days hari lalu"
+            else -> {
+                val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale("id", "ID"))
+                outputFormat.format(date)
+            }
+        }
     } catch (e: ParseException) {
         e.printStackTrace()
         this

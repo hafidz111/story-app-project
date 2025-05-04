@@ -14,7 +14,6 @@
     <string name="logout">Keluar</string>
     <string name="image_login">Gambar Login</string>
     <string name="enter_your_email">Masukkan email Anda</string>
-    <string name="user_name">Nama Pengguna</string>
     <string name="story_description">Deskripsi Cerita</string>
     <string name="image_story">Gambar Cerita</string>
     <string name="choose_gallery">Pilih dari Galeri</string>
@@ -22,8 +21,6 @@
     <string name="upload">Unggah Story</string>
     <string name="fill_description">Isi deskripsi terlebih dahulu</string>
     <string name="new_story">Cerita Baru</string>
-    <string name="story_date">Tanggal Cerita</string>
-    <string name="close">Tutup</string>
     <string name="error_invalid_email">Format email tidak valid</string>
     <string name="error_invalid_password">Kata sandi minimal 8 karakter</string>
     <string name="error_empty_name">Nama tidak boleh kosong</string>
@@ -34,12 +31,10 @@
     <string name="yeah">Yeah!</string>
     <string name="success_registration">%1$s. Yuk, masuk dan mulai belajar coding!</string>
     <string name="fill_description_and_picture">Isi deskripsi dan pilih gambar terlebih dahulu</string>
-    <string name="title_activity_maps">Peta Cerita</string>
+    <string name="title_maps">Peta Cerita</string>
     <string name="retry">Coba lagi</string>
     <string name="photo_user">Foto User</string>
     <string name="comment">Komentar</string>
-    <string name="timesstamp">Tanggal</string>
-    <string name="comment_count">2</string>
     <string name="comments_count">Comments (%1$s)</string>
     <string name="there_is_an_error">Terjadi kesalahan: %1$s</string>
     <string name="add_a_comment">Tambah komentar…</string>
@@ -51,4 +46,15 @@
     <string name="preview_image">Pratinjau Gambar</string>
     <string name="upload_failed">Gagal mengunggah: %1$s</string>
     <string name="fill_description_first">Isi deskripsi terlebih dahulu</string>
+    <string name="title_detail_story">Detail Cerita</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="dark_mode">Mode Gelap</string>
+    <string name="load_more">Selengkapnya</string>
+    <string name="be_the_first_to_comment">Jadilah yang pertama berkomentar</string>
+    <string name="home">Beranda</string>
+    <string name="maps">Peta</string>
+    <string name="hide_password">Sembunyikan kata sandi</string>
+    <string name="show_password">Tampilkan kata sandi</string>
+    <string name="comments">%1$s komentar</string>
+    <string name="imageoffset">Posisi gambar</string>
 </resources>
