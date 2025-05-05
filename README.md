@@ -24,17 +24,20 @@ Dark Mode
 5. 📷 Menambahkan cerita dengan:
    - Mengambil gambar dari galeri
    - Mengambil gambar dari kamera
-6. 🗺️ Menampilkan lokasi cerita menggunakan Google Maps dan marker lokasi
-7. 🌙 Mendukung Dark Mode yang disimpan sebagai preferensi pengguna
-8. 🧠 Menggunakan **Property Animation** pada elemen UI
-9. ℹ️ Menampilkan informasi selama proses komunikasi dengan API (loading, error, dll.)
-10. 🏛️ Menerapkan **Android Architecture Component**:
+6. 💬 Komentar pada cerita:
+   - Menampilkan komentar dalam Bottom Sheet dan di dalam halaman detail cerita
+   - Mengirim dan membaca komentar secara real-time menggunakan Firebase Realtime Database
+7. 🗺️ Menampilkan lokasi cerita menggunakan Google Maps dan marker lokasi
+8. 🌙 Mendukung Dark Mode yang disimpan sebagai preferensi pengguna
+9. 🧠 Menggunakan **Property Animation** pada elemen UI
+10. ℹ️ Menampilkan informasi selama proses komunikasi dengan API (loading, error, dll.)
+11. 🏛️ Menerapkan **Android Architecture Component**:
    - ViewModel
    - LiveData / StateFlow
-11. 🧪 Menggunakan arsitektur bersih:
+12. 🧪 Menggunakan arsitektur bersih:
     - **Repository Pattern**
     - **Dependency Injection**
-12. 🔄 Menggunakan **Kotlin Coroutines** untuk proses asynchronous
+13. 🔄 Menggunakan **Kotlin Coroutines** untuk proses asynchronous
 
 ---
 
@@ -49,6 +52,7 @@ Dark Mode
 - Coil
 - Google Maps SDK
 - Paging 3
+- Firebase Realtime Database
 
 ---
 
