@@ -15,35 +15,37 @@ Dark Mode
 ## ✨ Fitur Utama
 1. 🔗 Menggunakan API resmi dari Dicoding:  
    [`https://story-api.dicoding.dev/v1/`](https://story-api.dicoding.dev/v1/)
-2. 🔐 Fitur autentikasi:
+2. ⏳ Splash Screen: Tampilan pembuka aplikasi
+3. 🔐 Fitur autentikasi:
    - Login
    - Register
    - Logout
-3. 🗃️ Menyimpan sesi dan token pengguna menggunakan **DataStore Preferences**
-4. 📜 Menampilkan daftar cerita dengan Paging 3 dan halaman detail cerita ketika di klik Load more
-5. 📷 Menambahkan cerita dengan:
+4. 🗃️ Menyimpan sesi dan token pengguna menggunakan **DataStore Preferences**
+5. 📜 Menampilkan daftar cerita dengan Paging 3 dan halaman detail cerita ketika di klik Load more
+6. 📷 Menambahkan cerita dengan:
    - Mengambil gambar dari galeri
    - Mengambil gambar dari kamera
-6. 💬 Komentar pada cerita:
+7. 💬 Komentar pada cerita:
    - Menampilkan komentar dalam Bottom Sheet dan di dalam halaman detail cerita
    - Mengirim dan membaca komentar secara real-time menggunakan Firebase Realtime Database
-7. 🗺️ Menampilkan lokasi cerita menggunakan Google Maps dan marker lokasi
-8. 🌙 Mendukung Dark Mode yang disimpan sebagai preferensi pengguna
-9. 🧠 Menggunakan **Property Animation** pada elemen UI
-10. ℹ️ Menampilkan informasi selama proses komunikasi dengan API (loading, error, dll.)
-11. 🏛️ Menerapkan **Android Architecture Component**:
+8. 🗺️ Menampilkan lokasi cerita menggunakan Google Maps dan marker lokasi
+9. 🌙 Mendukung Dark Mode yang disimpan sebagai preferensi pengguna
+10. 🧠 Menggunakan **Property Animation** pada elemen UI
+11. ℹ️ Menampilkan informasi selama proses komunikasi dengan API (loading, error, dll.)
+12. 🏛️ Menerapkan **Android Architecture Component**:
     - ViewModel
     - LiveData / StateFlow
-12. 🧪 Menggunakan arsitektur bersih:
+13. 🧪 Menggunakan arsitektur bersih:
     - **Repository Pattern**
     - **Dependency Injection**
-13. 🔄 Menggunakan **Kotlin Coroutines** untuk proses asynchronous
+14. 🔄 Menggunakan **Kotlin Coroutines** untuk proses asynchronous
 
 ---
 
 ## 📦 Teknologi
 - Kotlin
 - Jetpack Compose
+- Jetpack SplashScreen API
 - Retrofit + OkHttp
 - DataStore Preferences
 - CameraX
@@ -57,6 +59,6 @@ Dark Mode
 ---
 
 ## 📥 Cara Install APK
-1. Download file APK di sini 👉 [Story App.apk](https://github.com/hafidz111/story-app-project/releases/download/v1.0.0/Story-App.apk)
+1. Download file APK di sini 👉 [Story App.apk](https://github.com/hafidz111/story-app-project/releases/download/v1.0.1/Story-App.v1.0.1.apk)
 2. Install di perangkat Android atau emulator
 3. Buka aplikasi yang telah terpasang
