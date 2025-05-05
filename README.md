@@ -32,8 +32,8 @@ Dark Mode
 9. 🧠 Menggunakan **Property Animation** pada elemen UI
 10. ℹ️ Menampilkan informasi selama proses komunikasi dengan API (loading, error, dll.)
 11. 🏛️ Menerapkan **Android Architecture Component**:
-   - ViewModel
-   - LiveData / StateFlow
+    - ViewModel
+    - LiveData / StateFlow
 12. 🧪 Menggunakan arsitektur bersih:
     - **Repository Pattern**
     - **Dependency Injection**
