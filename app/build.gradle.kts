@@ -88,4 +88,5 @@ dependencies {
     implementation(libs.firebase.database)
     implementation (libs.maps.compose)
     implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.core.splashscreen)
 }
